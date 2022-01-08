@@ -22,7 +22,8 @@ public class ReadFile {
         JavaSparkContext sc = new JavaSparkContext(conf);
 
         JavaRDD<String> readFile = sc.textFile("C:\\Users\\R D\\OneDrive\\Desktop\\house_post.txt");
-        readFile.flatMap(x -> Arrays.asList(x.split(",")).iterator()).collect().forEach(x -> System.out.println(x));
+        JavaRDD<String> removeChars = readFile.map(word -> word.replaceAll("[^a-zA-Z\\s]","").trim()).filter( word -> word.length()>0);
+        removeChars.flatMap(x -> Arrays.asList(x.split(",")).iterator()).collect().forEach(x -> System.out.println(x));
 
 
     }
