@@ -8,7 +8,10 @@ import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.Optional;
 import scala.Tuple2;
+import scala.reflect.internal.pickling.UnPickler;
 import sun.misc.InnocuousThread;
+
+import java.util.Scanner;
 
 public class Excercise {
     public static void main(String[] args) {
@@ -52,5 +55,8 @@ public class Excercise {
         data5.collect().forEach(x -> System.out.println(x));
       // difference between reduceByKey and reduce -> reduce give one value and reducebyKey ( Key, count)
 
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
+        sc.close();
     }
 }
